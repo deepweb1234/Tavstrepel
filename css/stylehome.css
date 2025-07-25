@@ -1,0 +1,253 @@
+@media (max-width: 1440px) {
+    body {
+        transform: scale(0.8);
+        transform-origin: top left;
+        width: 125%; /* Ajusta el ancho para evitar espacios en blanco */
+        height: auto;
+    }
+}
+
+
+
+
+
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(90deg, rgba(255, 102, 102, 0.8), rgba(0, 0, 0, 0.8));
+    backdrop-filter: blur(10px); /* Desenfoque del fondo detrás del contenedor */
+
+
+}
+
+header {
+
+    position: relative;
+    width: 100%;
+    height: 100px;
+    /* Ajusta la altura según sea necesario */
+    text-align: center;
+    color: white;
+    
+    font-size: 1%;
+
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 22px;
+    /* Ajusta el tamaño de la fuente según sea necesario */
+    font-weight: bold;
+
+    font-family: 'Arial', sans-serif;
+    /* Cambia esto a la fuente que prefieras */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    /* Sombra para mejorar la legibilidad */
+    
+}
+
+.banner-img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-145%, -50%);
+   
+
+    
+}
+
+
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.8), rgba(128, 0, 0, 0.8)); /* Degradado rojizo con opacidad */
+    backdrop-filter: blur(10px); /* Desenfoque del fondo detrás del contenedor */
+
+}
+
+nav a {
+    color: white;
+    text-align: center;
+    text-decoration: none !important;
+    padding: 14px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    margin: 0 10px;
+    border-radius: 7px;
+    display: flex;
+
+
+}
+
+nav a:hover {
+
+    background-color: #575757;
+    color: #ffd700;
+    display: flex;
+
+
+}
+
+
+
+.section {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-left: -4rem;
+    margin-right: -4rem;
+    
+
+
+}
+
+.section h2 {
+
+    font-size: 1em;
+    padding-top: 1px;
+    
+
+}
+
+
+
+
+.card {
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 420px; /* No se hace más grande de 420px */
+    
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.card img {
+    margin: 23px auto;
+    /* Centra la imagen horizontalmente */
+    display: flex;
+
+
+}
+
+
+
+
+.modal {
+    display: none;
+    /* Oculto por defecto */
+    position: absolute;
+    /* Posición absoluta dentro del card */
+    top: 0;
+    /* Ajustar según sea necesario */
+    left: 16%;
+    /* Ajustar según sea necesario */
+    transform: translateX(10px);
+    /* Mover el modal fuera del card */
+    width: 58%;
+    height: auto;  /* Permite que crezca según el contenido */
+    background-color: #141414;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    margin: 12px auto;
+    z-index: 1000;
+    max-width: 400px; /* Limita su tamaño máximo */
+   
+
+}
+
+
+
+.hidden {
+    visibility: hidden;
+    /* Oculta la imagen cuando se active el modal sin perder el espacio */
+
+}
+
+
+
+
+.modal-overlay {
+    display: none;
+    /* Oculto por defecto */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+
+
+}
+
+.modal.show {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+
+    height: 350%;
+    padding: 50%;
+
+
+
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+
+
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    z-index: 1000;
+    /* Asegura que los controles estén encima del resto */
+
+
+}
+
+.carousel-control-prev:hover .carousel-control-prev-icon,
+.carousel-control-next:hover .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.iframe-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56%;
+    overflow: hidden;
+}
+
+.iframe-container iframe {
+    position: absolute;
+    top: 6px;
+    left: 0;
+    width: 100%;
+    height: calc(100% + 37px);
+
+}

@@ -1,0 +1,30 @@
+header {
+            
+    position: relative;
+    width: 100%;
+    height: 100px; /* Ajusta la altura según sea necesario */
+    text-align: center;
+    color: white;
+    margin: 0;
+    padding: 0;
+    
+}
+
+.banner {
+    width: 100%;
+    height: 100%;
+    
+}
+
+.banner-text {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+    transform: translate(-50%, -50%);
+    font-size: 32px; /* Ajusta el tamaño de la fuente según sea necesario */
+    font-weight: bold;
+    font-family: 'Arial', sans-serif;
+    /* Cambia esto a la fuente que prefieras */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    /* Sombra para mejorar la legibilidad */
+}

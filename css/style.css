@@ -1,0 +1,108 @@
+/* Estilo del Body, Menú de Navegación y card del header */
+
+
+@media (max-width: 600px) {
+    nav {
+        flex-direction: column;  /* Cambia a columna */
+        flex-wrap: wrap; /* Permite que los enlaces se acomoden en varias líneas si es necesario */
+        align-items: center; /* Centra los enlaces */
+        font-size: 10px; /* Ajusta el tamaño de la fuente si es necesario */
+    }
+
+    nav a {
+        width: 100%; /* Hace que los enlaces ocupen el ancho completo en móviles */
+        text-align: center; /* Centra el texto */
+        padding: 10px; /* Ajusta el espaciado */
+    }
+}
+
+
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    /* background: linear-gradient(90deg, #4b6cb7, #182848); */
+    background: linear-gradient(90deg, rgba(255, 102, 102, 0.8), rgba(0, 0, 0, 0.8));
+    backdrop-filter: blur(10px); /* Desenfoque del fondo detrás del contenedor */
+    
+
+
+}
+
+
+
+nav {
+    display: flex;
+    justify-content: space-around;
+    background: linear-gradient(90deg, rgba(255, 0, 0, 0.8), rgba(128, 0, 0, 0.8)); /* Degradado rojizo con opacidad */
+    backdrop-filter: blur(10px); /* Desenfoque del fondo detrás del contenedor */
+
+}
+
+nav a {
+    color: white;
+    text-align: center;
+    text-decoration: none !important;
+    padding: 14px 20px;
+    transition: background-color 0.3s, color 0.3s;
+    font-weight: bold;
+    margin: 0 10px;
+    border-radius: 7px;
+
+
+}
+
+nav a:hover {
+
+    background-color: #575757;
+    color: #ffd700;
+
+
+}
+
+.container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.section {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    margin-left: -4rem;
+    margin-right: -4rem;
+
+}
+
+.section h2 {
+
+    font-size: 1em;
+    padding-top: 1px;
+
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+}
+
+.card-content {
+    padding: 1rem;
+}
