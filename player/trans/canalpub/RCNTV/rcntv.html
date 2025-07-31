@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>RCN TV</title>
-  <link href="https://vjs.zencdn.net/8.12.0/video-js.css" rel="stylesheet" />
+  <link href="https://vjs.zencdn.net/8.16.1/video-js.css" rel="stylesheet" />
   <style>
     body,
     html {
@@ -28,22 +28,18 @@
 
 <body>
   <video id="videoPlayer" class="video-js vjs-default-skin" controls preload="1"></video>
-  <script src="https://vjs.zencdn.net/8.12.0/video.min.js"></script>
+  <script src="https://vjs.zencdn.net/8.16.1/video.min.js"></script>
   <script>
     const video = document.getElementById('videoPlayer');
     const url = 'https://live20.bozztv.com/akamaissh101/ssh101/stream13/playlist.m3u8';
 
-
-
     const player = videojs(video);
     player.src({
       src: url,
-      type: 'application/dash+xml'
+      type: 'application/x-mpegURL'
     });
     player.play();
   </script>
 </body>
 
 </html>
-
-<!-- https: //cdn-live-rcn-tkdrm-edge1.tbxdrm.com/bcdn_token=lZ0YiPGd5Ubchw3DzaQ-KcSTRQik5q8fzswadU6EJnk&token_path=%2Frcn%2F&expires=1736656953/rcn/manifest.mpd -->
