@@ -31,7 +31,7 @@
   <script src="https://vjs.zencdn.net/8.12.0/video.min.js"></script>
   <script>
     const video = document.getElementById('videoPlayer');
-    const url = 'https://mdstrm.com/live-stream-playlist/5a5e1c2568b1910913db5fe2.m3u8?uid=LGiLbPqOOp1MsxBZVIg3Gxic8POXlGPI&sid=xBh5TG4llvR8rXx43RueH0kDWEwfes2K&pid=Aj4Y85ZsVDk3JNEnX3DjhbixgBl11Uct&an=c1_mediastream_vod&at=web-app&av=v6.0.119&ref=&res=1366x633&without_cookies=false&listenerid=&dnt=true';
+    const url = 'https://live20.bozztv.com/giatv/giatv-unojulsevunojulsev/unojulsevunojulsev/chunks.m3u8';
 
 
     const player = videojs(video);
