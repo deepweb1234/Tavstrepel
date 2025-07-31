@@ -1,0 +1,2696 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- METAS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      http-equiv="cache-control"
+      content="no-cache, no-store, must-revalidate"
+    />
+    <!-- FIN DE METAS -->
+
+    <!-- CSS -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="./css/svg.css" />
+    <link rel="stylesheet" href="./css/stylehome.css" />
+    <link rel="stylesheet" href="./css/modaldescripcion.css" />
+
+    <style>
+      .miperfil {
+        display: flex;
+        flex-direction: column;
+        /* Hace que los botones estén en columna */
+        align-items: flex-end;
+        gap: 5px;
+        position: absolute;
+        right: 100px;
+        /* Lo coloca en la derecha */
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .miperfil a {
+        text-decoration: none;
+        color: white;
+        font-size: 16px;
+        padding: 5px 5px;
+        border-radius: 5px;
+        transition: 0.3s;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        background-color: rgba(255, 0, 0, 0.8);
+        /* Fondo rojo oscuro */
+        width: 160px;
+        /* Tamaño fijo para alineación */
+        justify-content: center;
+      }
+
+      .miperfil a:hover {
+        background-color: red;
+      }
+    </style>
+
+    <!-- FIN DE CSS -->
+
+    <link rel="shortcut icon" href="./img/LOGO.jpg" />
+
+    <!-- SCRIPT -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="./JS/modal-iframe.js"></script>
+
+    <!-- FIN DE SCRIPT -->
+
+    <title>Tavo's Entertainment Stream</title>
+  </head>
+
+  <body>
+    <?php
+    session_start();
+    if (!isset($_SESSION['user'])) {
+        header('Location: inicio.html');  // Redirigir al login si no está autenticado
+        exit();
+    }
+    ?>
+
+    <header>
+      <aside class="miperfil">
+        <a href="perfil.html"><i class="fas fa-user"></i> Perfil</a>
+        <a href="logout.html"
+          ><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a
+        >
+      </aside>
+
+      <img
+        loading="lazy"
+        importance="high"
+        decoding="async"
+        src="./img/header.avif"
+        alt="Banner"
+        class="banner"
+      />
+
+      <div class="banner-text">Tavo's Entertainment Stream</div>
+
+      <div class="banner-img">
+        <img
+          loading="lazy"
+          importance="high"
+          decoding="async"
+          src="./img/LOGO.avif"
+          style="margin-right: -25%"
+          width="10%"
+          alt="logo de la pagina"
+        />
+      </div>
+    </header>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="peliculas.html">Películas</a>
+      <a href="series.html">Series</a>
+      <a href="deportes.html">Deportes</a>
+      <a href="tv_pub.html">TV Pública</a>
+      <a href="tv_pri.html">TV Privada</a>
+    </nav>
+
+    <!-- <iframe loading="lazy" WIDTH=100% HEIGHT=500 SRC="https://strwish.com/e/ftwr7wiyq2m9" frameborder="0" sandbox="allow-scripts allow-forms"></iframe>
+    <IFRAME loading="lazy" width="100%" height="500" SRC="https://dhtpre.com/embed/v6pvoim4ui0s" FRAMEBORDER=0 SCROLLING=NO fullscreen=NO></IFRAME>
+ -->
+
+    <!-- espacio exclusivo para peliculas -->
+
+    <div class="container">
+      <div id="peliculas" class="section">
+        <h2>Películas</h2>
+        <div
+          id="carouselPeliculas"
+          class="carousel slide"
+          data-interval="false"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div
+                      class="card"
+                      onmouseover="playVideo(this)"
+                      onmouseout="pauseVideo(this)"
+                    >
+                      <div class="modal-overlay"></div>
+                      <img
+                        loading="lazy"
+                        importance="high"
+                        decoding="async"
+                        width="141"
+                        height="200"
+                        src="./img/peli/pelicula1.jpg"
+                        alt="Pelicula 1"
+                      />
+                      <div class="modal">
+                        <div class="iframe-container">
+                          <video
+                            loading="lazy"
+                            width="260"
+                            height="160"
+                            src="./triller/UN GOLPE DE ALTURA - Trailer HD - Universal Spain (720p, h264, youtube).mp4"
+                            frameborder="0"
+                            allow="encrypted-media"
+                          ></video>
+                        </div>
+                        <div class="button-container">
+                          <div class="play-button">
+                            <a href="./player/peli/00a/001a.html">
+                              <svg
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                          <div
+                            class="more-info"
+                            role="button"
+                            tabindex="0"
+                            onclick="openModal('modalInfo1a','Un grupo de delincuentes intenta llevar a cabo el robo más audaz de sus vidas en un rascacielos de lujo.')"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                              />
+                            </svg>
+                          </div>
+
+                          <!-- Modal -->
+                          <div
+                            id="modalInfo1a"
+                            class="modal-descripcion"
+                            style="display: none"
+                          >
+                            <div class="modal-content">
+                              <span
+                                class="close"
+                                onclick="cerrarModal('modalInfo1a')"
+                                >&times;</span
+                              >
+
+                              <p id="modal-text"></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div
+                      class="card"
+                      onmouseover="playVideo(this)"
+                      onmouseout="pauseVideo(this)"
+                    >
+                      <div class="modal-overlay"></div>
+                      <img
+                        loading="lazy"
+                        importance="high"
+                        decoding="async"
+                        width="141"
+                        height="200"
+                        src="./img/peli/laviudanegra.avif"
+                        alt="Pelicula 2"
+                      />
+                      <div class="modal">
+                        <div class="iframe-container">
+                          <video
+                            loading="lazy"
+                            width="260"
+                            height="160"
+                            src="./triller/Viuda Negra _ Nuevo Tráiler oficial en español _ HD - Marvel España (1080p, h264, youtube).mp4"
+                            frameborder="0"
+                            allow="encrypted-media"
+                          ></video>
+                        </div>
+                        <div class="button-container">
+                          <div class="play-button">
+                            <a href="./player/peli/00a/002a.html">
+                              <svg
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                          <div
+                            class="more-info"
+                            role="button"
+                            tabindex="0"
+                            onclick="openModal('modalInfo2a', 'Natasha Romanoff enfrenta su pasado y antiguos enemigos en una peligrosa misión que la llevará al límite. ')"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                              />
+                            </svg>
+                          </div>
+
+                          <!-- Modal -->
+                          <div
+                            id="modalInfo2a"
+                            class="modal-descripcion"
+                            style="display: conten"
+                          >
+                            <div class="modal-content">
+                              <span
+                                class="close"
+                                onclick="cerrarModal('modalInfo2a') "
+                                >&times;</span
+                              >
+
+                              <p id="modal-text"></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div
+                      class="card"
+                      onmouseover="playVideo(this)"
+                      onmouseout="pauseVideo(this)"
+                    >
+                      <div class="modal-overlay"></div>
+                      <img
+                        loading="lazy"
+                        importance="high"
+                        decoding="async"
+                        width="141"
+                        height="200"
+                        src="./img/peli/mivillanofav4.jpeg"
+                        alt="Pelicula 3"
+                      />
+                      <div class="modal">
+                        <div class="iframe-container">
+                          <video
+                            loading="lazy"
+                            width="260"
+                            height="160"
+                            src="./triller/MI VILLANO FAVORITO 4.mp4"
+                            frameborder="0"
+                            allow="encrypted-media"
+                          ></video>
+                        </div>
+                        <div class="button-container">
+                          <div class="play-button">
+                            <a href="./player/peli/00a/003a.html">
+                              <svg
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                          <div
+                            class="more-info"
+                            role="button"
+                            tabindex="0"
+                            onclick="openModal('modalInfo3a', 'Gru, ahora reformado, debe enfrentarse a un nuevo villano mientras cuida a sus adorables hijas.')"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                              />
+                            </svg>
+                          </div>
+
+                          <!-- Modal -->
+                          <div
+                            id="modalInfo3a"
+                            class="modal-descripcion"
+                            style="display: none"
+                          >
+                            <div class="modal-content">
+                              <span
+                                class="close"
+                                onclick="cerrarModal('modalInfo3a')"
+                                >&times;</span
+                              >
+
+                              <p id="modal-text"></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div
+                      class="card"
+                      onmouseover="playVideo(this)"
+                      onmouseout="pauseVideo(this)"
+                    >
+                      <div class="modal-overlay"></div>
+                      <img
+                        loading="lazy"
+                        importance="high"
+                        decoding="async"
+                        width="141"
+                        height="200"
+                        src="./img/peli/latumbadelasluciernagas.avif"
+                        alt="Pelicula 4"
+                      />
+                      <div class="modal">
+                        <div class="iframe-container">
+                          <video
+                            loading="lazy"
+                            width="260"
+                            height="160"
+                            src="./triller/La Tumba de las Luciérnagas.mp4"
+                            frameborder="0"
+                            allow="encrypted-media"
+                          ></video>
+                        </div>
+                        <div class="button-container">
+                          <div class="play-button">
+                            <a href="./player/peli/00a/004a.html">
+                              <svg
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                          <div
+                            class="more-info"
+                            role="button"
+                            tabindex="0"
+                            onclick="openModal('modalInfo4a', 'Dos hermanos luchan por sobrevivir en la devastación de la Segunda Guerra Mundial en Japón.')"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                              />
+                            </svg>
+                          </div>
+
+                          <!-- Modal -->
+
+                          <div
+                            id="modalInfo4a"
+                            class="modal-descripcion"
+                            style="display: none"
+                          >
+                            <div class="modal-content">
+                              <span
+                                class="close"
+                                onclick="cerrarModal('modalInfo4a')"
+                                >&times;</span
+                              >
+
+                              <p id="modal-text"></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div
+                      class="card"
+                      onmouseover="playVideo(this)"
+                      onmouseout="pauseVideo(this)"
+                    >
+                      <div class="modal-overlay"></div>
+                      <img
+                        loading="lazy"
+                        importance="high"
+                        decoding="async"
+                        width="141"
+                        height="200"
+                        src="./img/peli/Fear the Night.avif"
+                        alt="Pelicula 5"
+                      />
+                      <div class="modal">
+                        <div class="iframe-container">
+                          <video
+                            loading="lazy"
+                            width="260"
+                            height="160"
+                            src="./triller/Noche sangrienta.mp4"
+                            frameborder="0"
+                            allow="encrypted-media"
+                          ></video>
+                        </div>
+                        <div class="button-container">
+                          <div class="play-button">
+                            <a href="./player/peli/00a/005a.html">
+                              <svg
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                          <div
+                            class="more-info"
+                            role="button"
+                            tabindex="0"
+                            onclick="openModal('modalInfo5a','Un grupo de amigos se ve atrapado en una noche llena de horror y secretos oscuros durante una fiesta aislada.' )"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                              />
+                            </svg>
+                          </div>
+
+                          <!-- Moral -->
+                          <div
+                            id="modalInfo5a"
+                            class="modal-descripcion"
+                            style="display: none"
+                          >
+                            <div class="modal-content">
+                              <span
+                                class="close"
+                                onclick="cerrarModal('modalInfo5a')"
+                                >&times;</span
+                              >
+
+                              <p id="modal-text"></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div
+                      class="card"
+                      onmouseover="playVideo(this)"
+                      onmouseout="pauseVideo(this)"
+                    >
+                      <div class="modal-overlay"></div>
+                      <img
+                        loading="lazy"
+                        importance="high"
+                        decoding="async"
+                        width="141"
+                        height="200"
+                        src="./img/peli/eterno.avif"
+                        alt="Pelicula 6"
+                      />
+                      <div class="modal">
+                        <div class="iframe-container">
+                          <video
+                            loading="lize"
+                            width="260"
+                            height="160"
+                            src="./triller/Eterno resplandor de una mente sin recuerdos.mp4"
+                            frameborder="0"
+                            allow="encrypted-media"
+                            sandbox="allow-scripts allow-same-origin"
+                          ></video>
+                        </div>
+
+                        <div class="button-container">
+                          <div class="play-button">
+                            <a href="./player/peli/00a/006a.html">
+                              <svg
+                                viewBox="0 0 24 24"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                                />
+                              </svg>
+                            </a>
+                          </div>
+                          <div
+                            class="more-info"
+                            role="button"
+                            tabindex="0"
+                            onclick="openModal('modalInfo6a',  'Después de una ruptura dolorosa, una pareja se somete a un procedimiento para borrar los recuerdos de su relación.' )"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                              />
+                            </svg>
+                          </div>
+
+                          <!-- Modal -->
+                          <div
+                            id="modalInfo6a"
+                            class="modal-descripcion"
+                            style="display: none"
+                          >
+                            <div class="modal-content">
+                              <span
+                                class="close"
+                                onclick="cerrarModal('modalInfo6a')"
+                                >&times;</span
+                              >
+
+                              <p id="modal-text"></p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <a
+            class="carousel-control-prev"
+            href="#carouselPeliculas"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselPeliculas"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- espacio esclusivo unicamente para series -->
+    <div class="container">
+      <div id="series" class="section">
+        <h2>Series</h2>
+        <div id="carouselseries" class="carousel slide" data-interval="false">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/seri/nadienosvaaextrañar.avif"
+                      alt="Serie 1"
+                    />
+                    <div class="modal">
+                      <div>
+                        <center>
+                          <h3>Nadie Nos va a...</h3>
+                          <p>
+                            prersiona el boton "PLAY" para acceder a la
+                            transmision en vivo o "VER MAS" para acceder a la
+                            informacion de este catalogo.
+                          </p>
+                        </center>
+                      </div>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/seri/secciones/nadiensvaaextrañar.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo1b','Haz clic en PLAY para acceder al menú de episodios.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo1b"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo1b')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/seri/Las azules.avif"
+                      alt="Serie 2"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Las azules</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a href="./player/seri/secciones/lasazules.html">
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo2b','Haz clic en PLAY para acceder al menú de episodios.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo2b"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo2b')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/seri/Batman El cruzado enmascarado.avif"
+                      alt="Serie 3"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>El Enmascarado</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a href="./player/seri/secciones/elenmascarado.html">
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo3b', 'Haz clic en PLAY para acceder al menú de episodios.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <div
+                          id="modalInfo3b"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo3b')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/seri/Estafadores de Tokio.avif"
+                      alt="Serie 4"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Estafadores de...</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/seri/secciones/estafadoresdetokio.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo4b', 'Haz clic en PLAY para acceder al menú de episodios.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo4b"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo4b')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/seri/La fiesta de las salchichas.avif"
+                      alt="Serie 5"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>La Fiesta de las...</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/seri/secciones/lafiestadelassalichichas.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo5b', 'Haz clic en PLAY para acceder al menú de episodios.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <div
+                          id="modalInfo5b"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo5b')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/seri/La dama del lago.avif"
+                      alt="Serie 6"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>La Mujer en el...</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a href="./player/seri/secciones/ladamadellago.html">
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo6b','Haz clic en PLAY para acceder al menú de episodios.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo6b"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo6b')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#carouselseries"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselseries"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- espacio para esclusivo para deportes -->
+    <div class="container">
+      <div id="deportes" class="section">
+        <h2>Deportes</h2>
+        <div id="carouselDeportes" class="carousel slide" data-interval="false">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/depo/Win Sports+.png"
+                      alt="Deporte 1"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Win Sport</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/deporte/WINSPORT/winsport.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo1c','Es un canal de televisión por suscripción deportivo colombiano centrado en la emisión del fútbol de ese país.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo1c"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo1c')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/depo/DirectvSport.png"
+                      alt="Deporte 2"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>DSport</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/deporte/DIRECTVSPORT/directvsport.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo2c', 'Es un canal de televisión por suscripción deportivo latinoamericano')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+
+                        <div
+                          id="modalInfo2c"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo2c')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/depo/TyCSport.png"
+                      alt="Deporte 3"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>TyC Sport</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/deporte/TYCSPORT/tycsport.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo3c',  'Es un canal argentino el cual brinda la emisión de eventos deportivos a nivel nacional e internacional.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo3c"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo3c')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/depo/ESPN_Premium_logo.png"
+                      alt="Novela 4"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>ESPN Premium</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a href="./player/trans/deporte/ESPN/ESPN.html">
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo4c', 'Ofrece transmisiones en vivo de eventos deportivos, análisis, noticias y programas relacionados con el mundo deportivo.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo4c"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo4c')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/depo/ClaroSport.png"
+                      alt="Deporte 5"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Claro Sport</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/deporte/clarosport/clarosport.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo5c', 'Canal de televisión latinoamericano de origen mexicano y es propiedad de América Móvil.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo5c"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo5c')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/depo/FoxSport.png"
+                      alt="Deporte 6"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Fox Sport</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/deporte/FOXSPORT/foxsport.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo6c', 'Es un canal de televisión por suscripción deportivo mexicano de origen estadounidense.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo6c"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo6c')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#carouselDeportes"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselDeportes"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- espacio exclusivo unicamente para tv-privada -->
+    <div class="container">
+      <div id="tv-privada" class="section">
+        <h2>TV Privada</h2>
+        <div
+          id="carouseltv-privada"
+          class="carousel slide"
+          data-interval="false"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpri/discoverychanel.png"
+                      alt="TV Privada 1"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Discovery Channel</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpriv/DISCOVERYCHANEL/discoverychanel.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo1d',  'Provee programación de alta calidad en las áreas de ciencia, ingeniería, tecnología, motor, aventura y estilos de vida.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo1d"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo1d')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpri/enlace.png"
+                      alt="TV Privada 2"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Enlace TV</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpriv/ENLACETV/enlacetv.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo2d', 'canal pentecostal neocarismático latinoaméricano donde se predica la teología o evangelio de la prosperidad.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <div
+                          id="modalInfo2d"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo2d')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpri/nick.png"
+                      alt="logo de nick"
+                    />
+
+                    <div class="modal">
+                      <h3>
+                        <center>Nickelodeon</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpriv/NICKELODEON/nick.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo3d', 'Nickelodeon es un canal de televisión por suscripción infantil y juvenil estadounidense propiedad de Paramount Global.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo3d"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo3d')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpri/tnt.png"
+                      alt="TV Pública 4"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>TNT</center>
+                      </h3>
+
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a href="./player/trans/canalpriv/TNT/tntTV.html">
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo4d', 'Canal de entretenimiento que transmite series, películas y eventos deportivos, especialmente de acción y drama.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo4d"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo4d')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpri/cinemax.png"
+                      alt="TV Privado 5"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>CINEMAX</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpriv/CINEMAX/cinemaxtv.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo5d', 'Canal de cine que ofrece una amplia selección de películas, desde estrenos hasta clásicos.' )"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo5d"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo5d')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpri/cartoonito.png"
+                      alt="logo de cartoonito"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>CARTOONITO</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpriv/CARTOONITO/cartoonito.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo6d', 'es un canal de televisión por suscripción de origen estadounidense enfocado a la audiencia infantil.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo6d"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo6d')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#carouseltv-privada"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouseltv-privada"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- espacio exclusivo unicamente para tv publica -->
+    <div class="container">
+      <div id="tv-publica" class="section">
+        <h2>TV Pública</h2>
+        <div
+          id="carouseltv-publica"
+          class="carousel slide"
+          data-interval="false"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpu/caracol.png"
+                      alt=" TV Pública 1"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Caracol TV</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpub/CARACOLTV/caracoltv.html"
+                          >
+                            <svg
+                              viewBox=" 0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <!-- Botón More Info -->
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo1e',  'Canal colombiano incluye telenovelas, películas y noticieros, y una fuerte presencia internacional.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo1e"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo1e')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpu/rcn.png"
+                      alt="TV Pública 2"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>RCN TV</center>
+                      </h3>
+
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a href="./player/trans/canalpub/RCNTV/rcntv.html">
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+
+                        <!-- Botón More Info -->
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo2e','Canal de Colombia que ofrece telenovelas, entretenimiento y noticieros con gran éxito local e internacional.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo2e"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo2e')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpu/laka.png"
+                      alt="TV Pública 3"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>La Kalle</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpub/LAKALLE/lakalletv.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal ('modalInfo3e', 'Canal musical colombiano enfocado en géneros urbanos y contenido de entretenimiento interactivo.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo3e"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo3e')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="carousel-item">
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpu/tleecaribe.png"
+                      alt="TV Pública 4"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Telecaribe TV</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpub/TELECARIBE/telecaribetv.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo4e', 'Canal regional que destaca la cultura y noticias de la región Caribe de Colombia.')"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo4e"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo4e')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpu/señalcolo.png"
+                      alt="TV Pública 5"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Señal Colombia</center>
+                      </h3>
+                      <p>
+                        prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a
+                            href="./player/trans/canalpub/SEÑALCOLMBIA/señacolombiatv.html"
+                          >
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal ('modalInfo5e', 'Canal público colombiano con contenido educativo y cultural que promueve la identidad nacional.' )"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo5e"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo5e')"
+                              >&times;</span
+                            >
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="card"
+                    onmouseover="showModal(this)"
+                    onmouseout="hideModal(this)"
+                  >
+                    <div class="modal-overlay"></div>
+                    <img
+                      loading="lazy"
+                      importance="high"
+                      decoding="async"
+                      width="141"
+                      height="200"
+                      src="./img/tvpu/canal1.png"
+                      alt="TV Pública 6"
+                    />
+                    <div class="modal">
+                      <h3>
+                        <center>Canal 1</center>
+                      </h3>
+                      <p>
+                        Prersiona el boton "PLAY" para acceder a la transmision
+                        en vivo o "VER MAS" para acceder a la informacion de
+                        este catalogo.
+                      </p>
+                      <div class="button-container">
+                        <div class="play-button">
+                          <a href="./player/trans/canalpub/CANAL1/canal1tv.html">
+                            <svg
+                              viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg"
+                            >
+                              <path
+                                d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z"
+                              />
+                            </svg>
+                          </a>
+                        </div>
+                        <div
+                          class="more-info"
+                          role="button"
+                          tabindex="0"
+                          onclick="openModal('modalInfo6e', 'Canal nacional con programación variada que abarca noticias, reality shows y entretenimiento.' )"
+                        >
+                          <svg
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z"
+                            />
+                          </svg>
+                        </div>
+
+                        <!-- Modal -->
+                        <div
+                          id="modalInfo6e"
+                          class="modal-descripcion"
+                          style="display: none"
+                        >
+                          <div class="modal-content">
+                            <span
+                              class="close"
+                              onclick="cerrarModal('modalInfo6e')"
+                              >&times;</span
+                            >
+
+                            <p id="modal-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <a
+            class="carousel-control-prev"
+            href="#carouseltv-publica"
+            role="button"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouseltv-publica"
+            role="button"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CODIGO PARA QUE FUNCIONE EL MODAL -->
+
+    <!-- Modal General -->
+
+    <script>
+      function openModal(modalId, description) {
+        let modal = document.getElementById(modalId);
+        if (modal) {
+          let textElement = modal.querySelector("p");
+
+          if (textElement) textElement.innerText = description;
+
+          modal.style.display = "block";
+        }
+      }
+
+      function cerrarModal(modalId) {
+        let modal = document.getElementById(modalId);
+        if (modal) {
+          modal.style.display = "none";
+        }
+      }
+    </script>
+  </body>
+</html>
