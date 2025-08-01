@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="./css/svg.css" />
     <link rel="stylesheet" href="./css/stylehome.css" />
     <link rel="stylesheet" href="./css/modaldescripcion.css" />
-    <link rel="stylesheet" href="./css/style.css"/>
+    <link rel="stylesheet" href="./css/mobile-responsive.css" />
 
     <style>
       .miperfil {
@@ -34,27 +34,27 @@
         flex-direction: column;
         /* Hace que los botones estén en columna */
         align-items: flex-end;
-        gap: 5px;
+        gap: 10%;
         position: absolute;
-        right: 100px;
+        right: 100%;
         /* Lo coloca en la derecha */
-        top: 50%;
-        transform: translateY(-50%);
+
+        transform: translateY(5%);
       }
 
       .miperfil a {
         text-decoration: none;
-        color: white;
-        font-size: 16px;
-        padding: 5px 5px;
-        border-radius: 5px;
-        transition: 0.3s;
+        color: #ffffff;
+        font-size: 12px;
+        padding: 2px 2px;
+        border-radius: 15px;
+        transition: 0.9s;
         display: flex;
         align-items: center;
-        gap: 5px;
+        gap: 10%;
         background-color: rgba(255, 0, 0, 0.8);
         /* Fondo rojo oscuro */
-        width: 160px;
+        width: 70%;
         /* Tamaño fijo para alineación */
         justify-content: center;
       }
@@ -127,10 +127,6 @@
       <a href="tv_pri.html">TV Privada</a>
     </nav>
 
-    <!-- <iframe loading="lazy" WIDTH=100% HEIGHT=500 SRC="https://strwish.com/e/ftwr7wiyq2m9" frameborder="0" sandbox="allow-scripts allow-forms"></iframe>
-    <IFRAME loading="lazy" width="100%" height="500" SRC="https://dhtpre.com/embed/v6pvoim4ui0s" FRAMEBORDER=0 SCROLLING=NO fullscreen=NO></IFRAME>
- -->
-
     <!-- espacio exclusivo para peliculas -->
 
     <div class="container">
@@ -144,8 +140,7 @@
           <div class="carousel-inner">
             <div class="carousel-item active">
               <div class="row">
-                <div class="col-6 col-md-6 col-lg-4">
-
+                <div class="col-md-4">
                   <div
                     class="card"
                     onmouseover="showModal(this)"
@@ -161,8 +156,6 @@
                         loading="lazy"
                         importance="high"
                         decoding="async"
-                        width="30%"
-                        height="50%"
                         src="./img/peli/pelicula1.jpg"
                         alt="Pelicula 1"
                       />
@@ -228,7 +221,7 @@
                   </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4">
+                <div class="col-md-4">
                   <div
                     class="card"
                     onmouseover="showModal(this)"
@@ -311,8 +304,7 @@
                   </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4">
-
+                <div class="col-md-4">
                   <div
                     class="card"
                     onmouseover="showModal(this)"
@@ -399,8 +391,7 @@
 
             <div class="carousel-item">
               <div class="row">
-                <div class="col-6 col-md-6 col-lg-4">
-
+                <div class="col-md-4">
                   <div
                     class="card"
                     onmouseover="showModal(this)"
@@ -484,8 +475,7 @@
                   </div>
                 </div>
 
-                <div class="col-6 col-md-6 col-lg-4">
-
+                <div class="col-md-4">
                   <div
                     class="card"
                     onmouseover="showModal(this)"
@@ -568,8 +558,7 @@
                   </div>
                 </div>
 
-               <div class="col-6 col-md-6 col-lg-4">
-
+                <div class="col-md-4">
                   <div
                     class="card"
                     onmouseover="showModal(this)"
@@ -2602,7 +2591,9 @@
                       </p>
                       <div class="button-container">
                         <div class="play-button">
-                          <a href="./player/trans/canalpub/CANAL1/canal1tv.html">
+                          <a
+                            href="./player/trans/canalpub/CANAL1/canal1tv.html"
+                          >
                             <svg
                               viewBox="0 0 24 24"
                               xmlns="http://www.w3.org/2000/svg"
