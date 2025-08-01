@@ -125,8 +125,8 @@ nav a:hover {
 
 
 .card {
-    width: 50%; /* Ocupa todo el ancho disponible */
-    max-width: 40%; /* No se hace más grande de 420px */
+    width: 100%; /* Ocupa todo el ancho disponible */
+    max-width: 420%; /* No se hace más grande de 420px */
     
     background-color: #ffffff;
     border: 1px solid #ddd;
