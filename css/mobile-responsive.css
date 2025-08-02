@@ -115,11 +115,19 @@
   }
 
   /* Ajustes para los modales hover */
+
+
+  
   .modal {
-    background-color: rgba(57, 161, 69, 0.9) !important;
+    background-color: rgba(0, 0, 0, 0.9) !important;
     border-radius: 8px !important;
     padding: 15px !important;
   }
+
+  .card:hover .modal {
+        display: block;
+      }
+
 
   .modal h3 {
     font-size: 16px !important;
@@ -198,24 +206,62 @@
 
   /* Ajustes para el modal de descripción */
   .modal-descripcion {
-    padding: 20px !important;
+    padding: 40px !important;
+    
+    
   }
 
   .modal-descripcion .modal-content {
-    margin: 10% auto !important;
-    width: 90% !important;
-    max-width: 400px !important;
+    margin: -120% -330% !important;
+    width: 200% !important;
+    max-width: 1000px !important;
+    
   }
 
+  .hidden {
+    visibility: hidden;
+    /* Oculta la imagen cuando se active el modal sin perder el espacio */
+
+}
+
+
+
+.modal.show {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+
+
   .modal-descripcion .close {
-    font-size: 24px !important;
-    right: 10px !important;
-    top: 5px !important;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 20px;
+    /* Aumenta el tamaño */
+    font-weight: bold;
+    color: #fff;
+    /* Color del ícono */
+    background: red;
+    /* Fondo rojo */
+    border-radius: 50%;
+    /* Hace el botón redondo */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
   }
 
   /* Mejorar la visibilidad del overlay */
   .modal-overlay {
-        display: none;
+ 
+
+      display: none;
     /* Oculto por defecto */
     position: absolute;
     top: 0;
@@ -223,7 +269,11 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
+
   }
+
+  
+  
 }
 
 /* DISPOSITIVOS MÓVILES PEQUEÑOS (480px y menos) */
@@ -328,8 +378,11 @@
 @media (max-width: 768px) {
   /* Hacer que los elementos sean más touch-friendly */
   .card:hover .modal {
-    display: block !important;
+    display: block;
+    
   }
+
+  
 
   /* Mejorar el espaciado entre secciones */
   .section {
@@ -340,8 +393,7 @@
 
   /* Mejorar la legibilidad del texto */
   .modal {
-    text-shadow: 1px 1px 2px rgba(3, 87, 132, 0.8) !important;
-    /* cambiar el color el opcional */
+   
     
     display: none;
     /* Oculto por defecto */
@@ -349,7 +401,7 @@
     /* Posición absoluta dentro del card */
     top: 0;
     /* Ajustar según sea necesario */
-    left: 16%;
+    left: 12%;
     /* Ajustar según sea necesario */
     transform: translateX(10px);
     /* Mover el modal fuera del card */
@@ -361,6 +413,7 @@
     margin: 12px auto;
     z-index: 1000;
     max-width: 400px; /* Limita su tamaño máximo */
+    
 
   }
 
@@ -404,10 +457,11 @@
 @media (max-width: 768px) {
   /* Mejorar el contraste para mejor legibilidad */
   .modal {
-    background-color: rgba(0, 0, 0, 0.95) !important;
+    background-color: rgba(211, 110, 110, 0.95) !important;
     /* este es el modal necesita correccion de color */
     width: 70%; 
-    height:30% ;
+    height:77%;
+    
   }
 
   /* Asegurar que los elementos interactivos sean lo suficientemente grandes */
