@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- METAS -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- FIN DE METAS -->
+
+
+    <link rel="shortcut icon" href="./img/LOGO.jpg">
+
+    <!-- CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./css/stylehome.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/svg.css">
+
+    <!-- JS -->
+    <script src="./JS/emergent_description.js"></script>
+
+    <style>
+        /* botones de carousel */
+
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.5);
+
+            height: 190px;
+            padding: 30px;
+
+
+
+        }
+
+        .carousel-control-prev,
+        .carousel-control-next {
+
+
+            width: 50px;
+            height: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.2);
+            border-radius: 50%;
+            z-index: 1000;
+            /* Asegura que los controles estén encima del resto */
+
+
+        }
+
+        .carousel-control-prev:hover .carousel-control-prev-icon,
+        .carousel-control-next:hover .carousel-control-next-icon {
+            background-color: rgba(0, 0, 0, 0.7);
+        }
+
+
+        /* fin de botones de carouse  */
+
+
+
+        .container {
+            background: rgba(52, 58, 64, 0.7);
+            /* Color de fondo semi-translúcido */
+            /* Alternativamente, puedes usar un degradado */
+            /* background: linear-gradient(135deg, rgba(52, 58, 64, 0.7), rgba(255, 0, 150, 0.7)); */
+            padding: 10px;
+            /* Espaciado interno */
+            border-radius: 50px;
+            /* Bordes redondeados */
+            backdrop-filter: blur(16px);
+            /* Desenfoque de fondo si hay algo detrás */
+        }
+
+        .titulo-categoria h2 {
+
+            text-align: left;
+            /* Alineación a la izquierda */
+            font-size: 2.5rem;
+            /* Tamaño de fuente */
+            font-family: 'Arial', sans-serif;
+            /* Cambia esto a la fuente que prefieras */
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+            /* Sombra para mejorar la legibilidad */
+            margin: 0;
+            /* Elimina márgenes por defecto */
+            padding: 10px 0;
+            /* Espaciado arriba y abajo */
+        }
+
+        /* card */
+
+        .card {
+            width: 212px;
+            /* Ajusta el ancho */
+            height: 400px;
+            /* ajuste la altura */
+            max-height: 1000px;
+            /* Ajusta la altura máxima si es necesario */
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card img {
+            width: 100%;
+            /* Asegúrate de que la imagen ocupe el 100% del card */
+            height: auto;
+            /* Mantiene la proporción de la imagen */
+        }
+
+
+        /* fin de card */
+
+
+
+        /* ventana emergente DESCRIPCION */
+
+        .col {
+            position: relative;
+        }
+
+        .description-window {
+            position: absolute;
+            top: 0;
+            right: -400px;
+            width: 250px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 1px;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, right 0.3s ease-in-out;
+            visibility: hidden;
+            text-align: center;
+
+        }
+
+        .card {
+            position: relative;
+        }
+
+        .card-img-top {
+            width: 100%;
+            height: auto;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+        }
+
+        .more-info {
+            cursor: pointer;
+        }
+
+        .description-window.active {
+            opacity: 1;
+            visibility: visible;
+            right: 0;
+            left: 3px;
+            font-size: 12px;
+        }
+
+        /* fin de ventana emergente DESCRIPCION */
+
+        /* sesion perfil */
+
+        .miperfil {
+            display: flex;
+            flex-direction: column;
+            /* Hace que los botones estén en columna */
+            align-items: flex-end;
+            gap: 5px;
+            position: absolute;
+            right: 100px;
+            /* Lo coloca en la derecha */
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .miperfil a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 5px 5px;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background-color: rgba(255, 0, 0, 0.8);
+            /* Fondo rojo oscuro */
+            width: 160px;
+            /* Tamaño fijo para alineación */
+            justify-content: center;
+        }
+
+        .miperfil a:hover {
+            background-color: red;
+        }
+
+        /* fin metodo sesion */
+    </style>
+
+
+
+
+    <!-- FIN DE CSS -->
+
+    <title>Tavo's Entertainment Stream</title>
+</head>
+
+<body>
+
+
+    <!-- este script detecta el tamaño del dispositivo y dipara una alerta -->
+    <script>
+        // Crear elementos dinámicamente
+        const warningDiv = document.createElement('div');
+        warningDiv.style.position = 'fixed';
+        warningDiv.style.top = '0';
+        warningDiv.style.left = '0';
+        warningDiv.style.right = '0';
+        warningDiv.style.textAlign = 'center';
+        warningDiv.style.padding = '10px';
+        warningDiv.style.zIndex = '9999';
+        warningDiv.style.display = 'none'; // Inicialmente oculto
+
+        document.body.appendChild(warningDiv);
+
+        // Función para ocultar el contenido principal
+        function hideContent() {
+            const content = document.body.children;
+            for (let i = 0; i < content.length; i++) {
+                content[i].style.display = 'none'; // Ocultar todo el contenido
+            }
+        }
+
+        // Función para verificar el ancho de la ventana
+        function checkWidth() {
+            if (window.innerWidth <= 767) {
+                // Mostrar advertencia
+                warningDiv.style.display = 'block';
+                // Ocultar contenido
+                hideContent();
+            } else {
+                // Ocultar advertencia
+                warningDiv.style.display = 'none';
+                // Mostrar contenido
+                const content = document.body.children;
+                for (let i = 0; i < content.length; i++) {
+                    content[i].style.display = ''; // Mostrar todo el contenido
+                }
+            }
+        }
+
+        // Escuchar eventos de redimensionamiento y carga
+        window.addEventListener("resize", checkWidth);
+        window.addEventListener("load", checkWidth); // Ejecutar al cargar la página
+    </script>
+
+
+    <!-- fin de script detecta tamaño -->
+
+
+    <header>
+
+        <aside class="miperfil">
+            <a href="perfil.php"><i class="fas fa-user"></i> Perfil</a>
+            <a href="logout.php"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+        </aside>
+
+
+        <img loading="lazy" importance="high" decoding="async" src="../Streaming_Principal/img/header.avif" alt="Banner" class="banner">
+
+        <div class="banner-text">
+            Tavo's Entertainment Stream
+        </div>
+
+        <div class="banner-img">
+            <img loading="lazy" importance="high" decoding="async" src="./img/LOGO.avif" style="margin-right: -25%;" width="10%" alt="logo de la pagina">
+        </div>
+
+
+    </header>
+
+    <nav>
+        <a href="index.php">Home</a>
+        <a href="peliculas.php">Películas</a>
+        <a href="series.php">Series</a>
+        <a href="deportes.php">Deportes</a>
+        <a href="tv_pub.php">TV Pública</a>
+        <a href="tv_pri.php">TV Privada</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- Carrusel 1 -->
+        <div class="titulo-catagoria mb-3">
+            <h2>Acción</h2>
+        </div>
+        <div id="peliculasCarrusel1" class="carousel slide mb-5" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/pelicula1.jpg" class="card-img-top" alt="pelicula1a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/001a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Robo en las alturas</strong></p>
+                                <p>Cuando un grupo de trabajadores son estafados por su empleador, hacen una conspiración para robar su casa.</p>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/laviudanegra.avif" class=" card-img-top" alt="Pelicula 2a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/002a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>La Viuda Negra</strong></p>
+                                <p>
+
+                                    Natasha Romanoff,
+                                    alias Viuda Negra,
+                                    se enfrenta a las partes más oscuras de su historia cuando surge una peligrosa conspiración con vínculos con su pasado. Perseguida por una fuerza que no se detendrá ante nada para acabar con ella,
+                                    Natasha debe enfrentarse a su historia como espía y a las relaciones rotas que dejó a su paso mucho antes de convertirse en una Vengadora.
+
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/mivillanofav4.jpeg" class="card-img-top" alt="Pelicula 3a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/003a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Gru 4. Mi villano favorito</strong></p>
+                                <p>
+
+                                    Gru, Lucy y las niñas -Margo, Edith y Agnes- dan la bienvenida a un nuevo miembro en la familia: Gru Junior, que parece llegar con el propósito de ser un suplicio para su padre. Gru tendrá que enfrentarse en esta ocasión a su nueva némesis Maxime Le Mal y su sofisticada y malévola novia Valentina, lo que obligará a la familia a tener que darse a la fuga. Cuarta entrega de 'Gru, mi villano favorito'.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/latumbadelasluciernagas.avif" class="card-img-top" alt="Pelicula 4a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/004a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>La tumba de las luciernagas</strong></p>
+                                <p>
+
+                                    Verano de 1945. La aviación estadounidense somete las ciudades japonesas a continuos ataques aéreos. En uno de ellos, una incursión con bombas incendiarias convierte la ciudad de Kōbe en un infierno humeante, para los dos protagonistas (Seita, de 14 años, y su hermanita Setsuko, de 5). El joven Seita y su pequeña hermana Setsuko son hijos de un oficial de la marina japonesa. Durante la Segunda Guerra Mundial, ambos viven con su madre, pero un día, tras un bombardeo, ellos se retrasan y no consiguen llegar al búnker donde ella los espera.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Fear the Night.avif" class="card-img-top" alt="Pelicula 5a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/005a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Noche Sangrienta</strong></p>
+                                <p>
+
+                                    Tes, una veterana de la guerra de Irak, se prepara para contraatacar después de que un grupo de asaltantes ataca su casa durante la despedida de soltera de su hermana, y descubre que están decididos a no dejar testigos.
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/eterno.avif" class="card-img-top" alt="Pelicula 6a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/006a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Eterno Resplandor</strong></p>
+                                <p>
+
+                                    Una mujer usa los servicios de una empresa para borrar de su memoria todo recuerdo de su ex pareja. Ofendido, el hombre intenta hacer lo mismo que ella, pero el proceso no sucede según lo esperado y el protagonista debe atravesar la gigantesca marea de recuerdos de su propio cerebro para recomponer las cosas.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/msiondemolition.jpeg" class="card-img-top" alt="Pelicula 7a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/007a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>LEGO Marvel Avengers: Misión Demolición</strong></p>
+                                <p>
+
+                                    Un joven aspirante a héroe y fan de los superhéroes libera por accidente a un nuevo y poderoso villano decidido a borrar a los Vengadores de la faz de la Tierra.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/oscura.avif" class="card-img-top" alt="Pelicula 8a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/008a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Oscura obsesión</strong></p>
+                                <p>
+
+                                    Estelle, una experimentada piloto de línea aérea, lleva una vida perfecta entre vuelos de larga distancia con su amado y protector esposo Guillaume. Un día, por casualidad, en el pasillo de un aeropuerto, se cruza con Ana, una fotógrafa con la que tuvo un apasionado romance veinte años antes. Estelle no sabe que este reencuentro la enviará a una espiral de pesadilla, volviendo su vida patas arriba y tornándola irracional.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/santosypeca.avif" class="card-img-top" alt="Pelicula 9a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/009a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>En Tierra de Santos y Pecadores</strong></p>
+                                <p>
+
+                                    Irlanda, años 70. Deseoso de dejar su oscuro pasado atrás, el antiguo asesino a sueldo Finbar Murphy lleva una vida tranquila en el pequeño pueblo costero de Glen Colm Cille, lejos de la violencia política que asola el resto del país. Cuando llega al pueblo un peligroso grupo de terroristas liderado por la despiadada Doireann, Finbar se verá inmerso en un peligroso juego que le obligará a elegir entre mantener su identidad secreta o defender a sus vecinos y amigos.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/lamukerdelmomento.avif" class="card-img-top" alt="Pelicula 10a">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00a/010a.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>La mujer del momento </strong></p>
+                                <p>
+
+                                    Rodney Alcala era un asesino en plena matanza cuando descaradamente participó y ganó una cita en el popular programa de televisión "The Dating Game"..
+
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <a class="carousel-control-prev" href="#peliculasCarrusel1" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+            <a class="carousel-control-next" href="#peliculasCarrusel1" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+        </div>
+
+        <!-- Carrusel 2 -->
+        <div class="titulo-catagoria mb-3">
+            <h2>Aventura</h2>
+        </div>
+        <div id="peliculasCarrusel2" class="carousel slide mb-5" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/soyleyenda.avif" class="card-img-top" alt="Pelicula 1b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/001b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Soy Leyenda</strong></p>
+                                <p>
+
+                                    Los demás seres humanos se han convertido en unos mutantes nocturnos llamados "Darkseekers" y todos ansían beber su sangre, durante la noche debe esconderse de ellos y esperar el amanecer. Él ha sobrevivido porque es inmune al virus; todos los días envía mensajes por radio con la esperanza de que haya otros supervivientes, pero es inútil. Lo único que puede hacer es buscar una fórmula que le permita utilizar su sangre inmune para devolverles a los hombres su naturaleza. Pero está en inferioridad de condiciones y el tiempo se acaba.
+
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/logan.avif" class="card-img-top" alt="Pelicula 2b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/002b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Logan</strong></p>
+                                <p>
+
+                                    Sin sus poderes, por primera vez, Lobezno es verdaderamente vulnerable. Después de una vida de dolor y angustia, sin rumbo y perdido en el mundo donde los X-Men son leyenda, su mentor Charles Xavier lo convence de asumir una última misión: proteger a una joven que será la única esperanza para la raza mutante.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/los hombres lobo.avif" class="card-img-top" alt="Pelicula 3b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/003b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Los hombres lobo</strong></p>
+                                <p>
+
+                                    Cuando un juego de cartas cobra vida, una familia viaja en el tiempo hasta una aldea medieval, donde debe desenmascarar a los hombres lobo para poder volver a casa.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Alanadiosavenga.avif" class="card-img-top" alt="Pelicula 4b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/004b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Alana, diosa vengadora</strong></p>
+                                <p>
+
+                                    Esta película de acción, basada en una saga de cómics indonesios, sigue a Alana, una joven nacida durante una erupción volcánica que ha lidiado con problemas de ira desde su infancia. Su vida cambia cuando descubre que su furia tiene un origen sobrenatural vinculado al volcán que marcó su nacimiento.
+
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/elportaldelguerrero.avif" class="card-img-top" alt="Pelicula 5b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/005b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>El portal del guerrero</strong></p>
+                                <p>
+
+                                    Jack Bronson, un joven americano, es mágicamente transportado a la antigua China, donde tendrá que aprender a convertir sus habilidades con los videojuegos en las de un guerrero de Kung Fu, para rescatar a la bella princesa de las garras de un malvado rey bárbaro.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Deadpool y Lobezno.avif" class="card-img-top" alt="Pelicula 6b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/006b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Deadpool y Lobezno</strong></p>
+                                <p>
+
+                                    Un apático Wade Wilson se afana en la vida civil tras dejar atrás sus días como Deadpool, un mercenario moralmente flexible. Pero cuando su mundo natal se enfrenta a una amenaza existencial, Wade debe volver a vestirse a regañadientes con un Lobezno aún más reacio a ayudar.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/quebelloesvivir.jpg" class="card-img-top" alt="Pelicula 7b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/007b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Que bello es vivir</strong></p>
+                                <p>
+
+                                    George Bailey (James Stewart) es un honrado y modesto ciudadano que dirige y mantiene a flote un pequeño banco familiar, a pesar de los intentos de un poderoso banquero por arruinarlo. El día de Nochebuena de 1945, abrumado por la repentina desaparición de una importante suma de dinero, que supondría no solo la quiebra de su banco, sino también un gran escándalo, decide suicidarse, pero cuando está a punto de hacerlo ocurre algo extraordinario. (FILMAFFINITY)
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/The Adventurers.avif" class="card-img-top" alt="Pelicula 8b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/008b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>The Adventurers</strong></p>
+                                <p>
+
+                                    Los principales ladrones del mundo unen sus fuerzas para lograr el golpe de una vida. Pero cuando se encuentren perseguidos en toda Europa por un legendario detective francés, tendrán que llevar su juego al siguiente nivel.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Avatar.avif" class="card-img-top" alt="Pelicula 9b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/009b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Avatar</strong></p>
+                                <p>
+
+                                    Año 2154. Jake Sully, un exmarine en silla de ruedas, es enviado al planeta Pandora, donde se ha creado el programa Avatar, gracias al cual los seres humanos pueden controlar de forma remota un cuerpo biológico con apariencia y genética de la especie nativa. Pronto se encontrará con la encrucijada entre seguir las órdenes de sus superiores o defender al mundo que le ha acogido y siente como suyo.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Road Wars.avif" class="card-img-top" alt="Pelicula 10b">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00b/010b.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Guerras en la carretera: Max Fury</strong></p>
+                                <p>
+
+                                    En un páramo postapocalíptico, dos hermanas abandonan su fortaleza para salvar a su madre herida. Armadas únicamente con un potente coche y munición limitada, corren contra el tiempo y los despiadados asaltantes para conseguir suministros que les salven la vida en un puesto de avanzada lejano.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
+            <a class="carousel-control-prev" href="#peliculasCarrusel2" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+            <a class="carousel-control-next" href="#peliculasCarrusel2" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+        </div>
+
+        <!-- Carrusel 3 -->
+        <div class="titulo-catagoria mb-3">
+            <h2>Terror</h2>
+        </div>
+        <div id="peliculasCarrusel3" class="carousel slide mb-5" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Strange Darling.avif" class="card-img-top" alt="Pelicula 1c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/001c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Strange Darling</strong></p>
+                                <p>
+
+                                    Nada es lo que parece cuando un retorcido rollo de una noche se convierte en la viciosa cadena de asesinatos de un asesino en serie.
+
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Alien Romulus.avif" class="card-img-top" alt="Pelicula 2c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/002c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Alien: Romulus</strong></p>
+                                <p>
+
+                                    Mientras rebuscan en las profundidades de una estación espacial abandonada, un grupo de jóvenes colonizadores del espacio se encuentra cara a cara con la forma de vida más aterradora del universo. Nueva película de la saga Alien.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Azrael.avif" class="card-img-top" alt="Pelicula 3c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/003c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Azrael</strong></p>
+                                <p>
+
+                                    En un mundo del que nadie habla, una devota persigue a una joven que ha escapado de su encierro. Recapturada por sus despiadados líderes, Azrael debe ser sacrificada para apaciguar un antiguo mal en lo más profundo de las tierras salvajes que la rodean.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/La trampa del ratón.avif" class="card-img-top" alt="Pelicula 4c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/004c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>La trampa del raton</strong></p>
+                                <p>
+
+                                    Es el 21 cumpleaños de Alex, pero está atrapada en la sala de máquinas recreativas en un turno de noche, así que sus amigos deciden darle una sorpresa, pero un asesino enmascarado vestido de Mickey Mouse decide jugar un juego propio con ellos al que ella debe sobrevivir. Primera película de terror creada tras le caída de Mickey Mouse en el dominio público en su versión de "Steamboat Willie" de 1928.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/el cuervo.avif" class="card-img-top" alt="Pelicula 5c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/005c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>El cuervo</strong></p>
+                                <p>
+
+                                    Eric Draven y Shelly Webster son brutalmente asesinados cuando los demonios de su oscuro pasado les alcanzan. Ante la oportunidad de sacrificarse para salvar a su verdadero amor, Eric se propone vengarse despiadadamente de sus asesinos, atravesando el mundo de los vivos y los muertos para saldar sus deudas.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+
+
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/The Eye 2.avif" class="card-img-top" alt="Pelicula 6c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/006c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>The Eye 2</strong></p>
+                                <p>
+
+                                    La joven Joey se recupera de un intento de suicidio. En el hospital le dicen que está embarazada. Al volver a la normalidad, decidida a darle una nueva oportunidad a su vida y a la de su futuro bebe, pero empieza a ver gente extraña que la atemoriza. ¿Quienes son? Pronto descubrirá que a consecuencia de haber estado a las puertas de la muerte, Joey tiene la habilidad de ver a los muertos.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/El ataque del cocadrilo.avif" class="card-img-top" alt="Pelicula 7c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/007c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>El ataque del cocadrilo</strong></p>
+                                <p>
+
+                                    Cuando un caimán se come un cargamento de droga, se desata el infierno en Florida. "Methgator" se inspira libremente en los informes de 2019 según los cuales un departamento de policía de Tennessee desaconsejó públicamente tirar metanfetamina por los inodoros debido a la posibilidad de que los caimanes ingirieran la droga, creando hiperagresivos "meth gators".
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/La maldición de Cenicienta.avif" class="card-img-top" alt="Pelicula 8c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/008c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>La maldición de Cenicienta</strong></p>
+                                <p>
+
+                                    Cenicienta pasará por un infierno del que nadie saldrá fácilmente.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Exorcismo en Connecticut.avif" class="card-img-top" alt="Pelicula 9c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/009c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Exorcismo en Connecticut</strong></p>
+                                <p>
+
+                                    Tras recibir la noticia de que su hijo adolescente, Matt, tiene cáncer, Sarah y Peter Campbell deciden trasladar a toda la familia cerca de la clínica dónde Matt está siendo tratado. El lugar elegido es una imponente casa de estilo victoriano que oculta un oscuro pasado como antigua funeraria en la que sucedieron terribles acontecimientos. La familia empieza a presenciar violentos y extraños fenómenos que, al principio, asocian con el estrés provocado por la enfermedad. Pronto se darán cuenta de que se enfrentan a oscuras y terroríficas fuerzas de origen sobrenatural.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Renacida de la Oscuridad.avif" class="card-img-top" alt="Pelicula 10c">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00c/010c.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Renacida de la Oscuridad</strong></p>
+                                <p>
+
+                                    Un bebé muerto antes de nacer es robado por el trabajador de una funeraria y devuelto a la vida a través de poderes telequinéticos. Cuando cumple 16 años, decide abandonar su casa para encontrar a su madre, arrasando todo lo que encuentra a su paso.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <a class="carousel-control-prev" href="#peliculasCarrusel3" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+            <a class="carousel-control-next" href="#peliculasCarrusel3" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+        </div>
+
+        <!-- Carrusel 4 -->
+        <div class="titulo-catagoria mb-3">
+            <h2>ciencia ficcion</h2>
+        </div>
+
+        <div id="peliculasCarrusel4" class="carousel slide mb-5" data-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Legión de honor.avif" class="card-img-top" alt="Pelicula 1d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/001d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Legión de honor</strong></p>
+                                <p>
+
+                                    Un ex marine se despierta con una visión apocalíptica fuera de su ventana y se protege de las criaturas malvadas que rodean la puerta de su apartamento y aterrorizan a la ciudad.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Mondocane.avif" class="card-img-top" alt="Pelicula 2d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/002d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Mondocane</strong></p>
+                                <p>
+
+                                    En un futuro próximo, la ciudad de Taranto, en el sur de Italia, se verá rodeada de alambradas que nadie, ni siquiera la policía, se atreve a cruzar. Los más pobres se quedan luchando por sobrevivir, mientras las pandillas compiten por el territorio. Dos huérfanos de trece años que crecieron juntos sueñan con unirse a una de las pandillas.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Los Invasores.avif" class="card-img-top" alt="Pelicula 3d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/003d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Los Invasores</strong></p>
+                                <p>
+
+                                    En una ciudad sumida en el caos con la llegada de una gigantesca nave alienígena, un joven enamorado, tomado como rehén por un misterioso hombre, intenta desesperadamente liberarse y buscar al amor de su vida.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Spy Kids El armagedón.avif" class="card-img-top" alt="Pelicula 4d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/004d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Spy Kids: El armagedón</strong></p>
+                                <p>
+
+                                    Los hijos de los mejores agentes secretos del mundo ayudan sin saberlo a un poderoso desarrollador de juegos a liberar un virus informático que le da el control de toda la tecnología, lo que los lleva a convertirse en espías para salvar a sus padres y al mundo.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/TerrorVision.avif" class="card-img-top" alt="Pelicula 5d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/005d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>TerrorVision</strong></p>
+                                <p>
+
+                                    La familia Putterman se ve amenazada por un monstruo extraterrestre que emerge de su aparato televisivo.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="carousel-item">
+                    <div class="row">
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Amanecer rojo.avif" class="card-img-top" alt="Pelicula 6d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/006d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Amanecer rojo</strong></p>
+                                <p>
+
+                                    Un ejército formado por tropas soviéticas y cubanas invade y destruye una pequeña localidad de Colorado, provocando la III Guerra Mundial. Un grupo de jóvenes con un alto espíritu patriótico consigue huir y preparar un rápido contraataque.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Replicantes.avif" class="card-img-top" alt="Pelicula 7d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/007d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Replicantes</strong></p>
+                                <p>
+
+                                    Faye intenta reemplazar a su esposo recién fallecido, Evan, con un simulador de Android (SIM). Aunque SIM Evan parece un Evan humano en todos los sentidos, Faye no siente el mismo amor por SIM Evan que por ella. SIM Evan intenta recuperar a Faye mientras que al mismo tiempo huye de un agente del gobierno que persigue a los SIM que se han vuelto "conscientes" y podrían ser una amenaza para la humanidad.
+                                </p>
+                            </div>
+                        </div>
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Megalodon.avif" class="card-img-top" alt="Pelicula 8d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/008d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Megalodon</strong></p>
+                                <p>
+
+                                    Un buque militar en búsqueda de un sumergible no identificado se encuentra cara a cara con un tiburón gigante, obligado a usar solo lo que tiene a bordo para defenderse de la monstruosa bestia.
+                                </p>
+                            </div>
+                        </div>
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/La Conspiración del Diablo.avif" class="card-img-top" alt="Pelicula 9d">
+                                <div class="button-container">
+                                    <div class="play-button">
+                                        <a href="./player/peli/00d/009d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>La Conspiración del Diablo</strong></p>
+                                <p>
+                                    Una poderosa empresa de biotecnología tiene una tecnología innovadora que les permite clonar las figuras más influyentes. Detrás de esta, hay un culto satánico que busca robar el Sudario de Cristo, pues contiene el ADN de Jesús. Esto desatará la guerra de los ángeles en la Tierra.
+
+                                </p>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="col">
+                            <div class="card">
+                                <img loading="lazy" importance="high" decoding="async" width="141" height="200" src="./img/peli/Materia Gris.avif" class="card-img-top" alt="Pelicula 10d">
+                                <div class="button-container">
+                                    <div class="play-button"> <a href="./player/peli/00d/010d.php">
+                                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M5 2.69127C5 1.93067 5.81547 1.44851 6.48192 1.81506L23.4069 11.1238C24.0977 11.5037 24.0977 12.4963 23.4069 12.8762L6.48192 22.1849C5.81546 22.5515 5 22.0693 5 21.3087V2.69127Z" />
+                                            </svg>
+                                        </a>
+                                    </div>
+                                    <div class="more-info" onclick="toggleDescription(this)">
+                                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M12 15.5859L19.2928 8.29297L20.7071 9.70718L12.7071 17.7072C12.5195 17.8947 12.2652 18.0001 12 18.0001C11.7347 18.0001 11.4804 17.8947 11.2928 17.7072L3.29285 9.70718L4.70706 8.29297L12 15.5859Z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                            <div class="description-window">
+                                <p><strong>Materia Gris (Gray Matter)</strong></p>
+                                <p>
+                                    Durante toda su vida, su madre le ha enseñado a Aurora que las habilidades sobrehumanas que poseen son peligrosas, las habilidades que los hacen únicos, también los hacen. Ahora, en una fatídica y mortal noche, Aurora descubrirá si su madre estaba diciendo la verdad y qué consecuencias podría tener el uso de sus poderes.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- Ventana lateral con la descripción (por defecto oculta) -->
+                <div class="description-window">
+                    <p><strong>La Conspiración del Diablo</strong></p>
+                    <p>Una intrigante película de suspenso sobre un oscuro misterio en el que...</p>
+                </div>
+            </div>
+
+
+
+
+
+
+
+            <a class="carousel-control-prev" href="#peliculasCarrusel4" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+            <a class="carousel-control-next" href="#peliculasCarrusel4" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden"></span>
+            </a>
+        </div>
+
+
+
+        <!-- Repite el bloque de carrusel según sea necesario para mostrar todas las películas -->
+
+    </div>
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
