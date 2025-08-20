@@ -219,54 +219,6 @@
 <body>
 
 
-    <!-- este script detecta el tamaño del dispositivo y dipara una alerta -->
-    <script>
-        // Crear elementos dinámicamente
-        const warningDiv = document.createElement('div');
-        warningDiv.style.position = 'fixed';
-        warningDiv.style.top = '0';
-        warningDiv.style.left = '0';
-        warningDiv.style.right = '0';
-        warningDiv.style.textAlign = 'center';
-        warningDiv.style.padding = '10px';
-        warningDiv.style.zIndex = '9999';
-        warningDiv.style.display = 'none'; // Inicialmente oculto
-
-        document.body.appendChild(warningDiv);
-
-        // Función para ocultar el contenido principal
-        function hideContent() {
-            const content = document.body.children;
-            for (let i = 0; i < content.length; i++) {
-                content[i].style.display = 'none'; // Ocultar todo el contenido
-            }
-        }
-
-        // Función para verificar el ancho de la ventana
-        function checkWidth() {
-            if (window.innerWidth <= 767) {
-                // Mostrar advertencia
-                warningDiv.style.display = 'block';
-                // Ocultar contenido
-                hideContent();
-            } else {
-                // Ocultar advertencia
-                warningDiv.style.display = 'none';
-                // Mostrar contenido
-                const content = document.body.children;
-                for (let i = 0; i < content.length; i++) {
-                    content[i].style.display = ''; // Mostrar todo el contenido
-                }
-            }
-        }
-
-        // Escuchar eventos de redimensionamiento y carga
-        window.addEventListener("resize", checkWidth);
-        window.addEventListener("load", checkWidth); // Ejecutar al cargar la página
-    </script>
-
-
-    <!-- fin de script detecta tamaño -->
 
 
     <header>
@@ -276,7 +228,7 @@
         </aside>
 
 
-        <img loading="lazy" importance="high" decoding="async" src="../Streaming_Principal/img/header.avif" alt="Banner" class="banner">
+        <img loading="lazy" importance="high" decoding="async" src="./img/header.avif" alt="Banner" class="banner">
 
         <div class="banner-text">
             Tavo's Entertainment Stream
