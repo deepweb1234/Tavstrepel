@@ -76,7 +76,7 @@
     <script src="./JS/modal-iframe.js"></script>
       <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("/sw.js")
+      navigator.serviceWorker.register("./sw.js")
         .then(() => console.log("Service Worker registrado ✅"))
         .catch(err => console.log("Error al registrar SW:", err));
     }
@@ -2704,6 +2704,7 @@
     </script>
   </body>
 </html>
+
 
 
 
